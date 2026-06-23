@@ -86,7 +86,7 @@ const Testimonials = () => {
 
         {/* First Row */}
         <div className="relative mx-auto w-full max-w-5xl overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent"></div>
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent"></div>
 
           <div className="marquee-inner flex min-w-[200%] gap-4 py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
@@ -97,12 +97,12 @@ const Testimonials = () => {
             ))}
           </div>
 
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent"></div>
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent"></div>
         </div>
 
         {/* Second Row */}
         <div className="relative mx-auto w-full max-w-5xl overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent"></div>
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent"></div>
 
           <div className="marquee-inner marquee-reverse flex min-w-[200%] gap-4 py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
@@ -113,7 +113,7 @@ const Testimonials = () => {
             ))}
           </div>
 
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent"></div>
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent"></div>
         </div>
       </div>
 
