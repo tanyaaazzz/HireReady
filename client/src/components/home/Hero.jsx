@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../../assets/logo.png';
 import {Link} from 'react-router-dom' ;
 
 const Hero = () => {
@@ -17,7 +18,11 @@ const Hero = () => {
                 {/* Navbar */}
                 <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="https://prebuiltui.com">
-                        <img src="/logo.svg" alt="logo" className='h-11 w-auto' />
+                        <img
+                                    src={logo}
+                                    alt="logo"
+                                    className="h-12 w-auto"
+                                  />
                     </a>
 
                     <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
