@@ -35,6 +35,15 @@ const Dashboard = () => {
     navigate(`/app/builder/res123`)
 
   }
+  const editTitle=async(event)=>{
+    event.preventDefault()
+  }
+  const deleteResume=async(resumeId)=>{
+    const confirm=window.confirm('Are you sure you want to delete this resume?')
+    if(confirm){
+      setAllResumes(prev=>prev.filter(resume=>resume._id!==resumeId))
+    }
+  }
   useEffect(() => {
     loadAllResumes();
   }, []);
@@ -82,7 +91,7 @@ console.log(showUploadResume);
 
             return (
               <button
-                key={index}
+                key={index} onClick={()=>navigate(`/app/builder/${resume._id}`)}
                 className="relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer"
                 style={{
                   background: `linear-gradient(135deg, ${baseColor}10, ${baseColor}40)`,
@@ -106,10 +115,16 @@ console.log(showUploadResume);
                   {new Date(resume.updatedAt).toLocaleDateString()}
                 </p>
 
-                <div className="absolute top-1 right-1 items-center hidden group-hover:flex">
-                  <TrashIcon className="size-7 p-1.5 bg-white/50 rounded text-slate-700 transition-colors" />
+                <div onClick={e=>e.stopPropagation()}className="absolute top-1 right-1 items-center hidden group-hover:flex">
+                  <TrashIcon onClick={()=>deleteResume(resume._id)} className="size-7 p-1.5 bg-white/50 rounded text-slate-700 transition-colors" />
 
-                  <FilePenIcon className="size-7 p-1.5 bg-white/50 rounded text-slate-700 transition-colors" />
+                  <FilePenIcon
+  onClick={() => {
+    setEditResumeId(resume._id);
+    setTitle(resume.title);
+  }}
+  className="size-7 p-1.5 bg-white/50 rounded text-slate-700 transition-colors"
+/>
                 </div>
               </button>
             );
@@ -153,6 +168,7 @@ console.log(showUploadResume);
                       )}
                     </div>
                   </label>
+                  <input type='file' id='resume-input' accept='.pdf' hidden onChange={(e)=>setResume(e.target.files[0])}/>
                 </div>
                 
                 <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
@@ -163,6 +179,25 @@ console.log(showUploadResume);
   className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
   onClick={() => {
     setShowUploadResume(false); setTitle('')
+  }}
+/>
+              </div>
+
+            </form>
+          )}
+          {editResumeId && (
+            <form onSubmit={editTitle} onClick={()=>setEditResumeId('')}className="fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center">
+              <div onClick ={e =>e.stopPropagation()} className="relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6">
+                <h2 className="text-xl font-bold mb-4">Edit Resume Title</h2>
+                <input type='text' onChange={(e)=>setTitle(e.target.value)} value={title} placeholder='Enter resume title' className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 " required/>
+                <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
+  Update
+</button>
+
+<XIcon
+  className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
+  onClick={() => {
+    setEditResumeId(''); setTitle('')
   }}
 />
               </div>
