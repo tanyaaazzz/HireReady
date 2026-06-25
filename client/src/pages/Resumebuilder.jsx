@@ -13,6 +13,7 @@ import {
   User
 } from 'lucide-react'
 import PersonalInfoform from '../components/PersonalInfoform'
+import ResumePreview from '../components/ResumePreview'
 
 const Resumebuilder = () => {
 
@@ -127,7 +128,8 @@ const Resumebuilder = () => {
               {/*---button---*/}
 
             </div>
-            {/*---resume preview---*/}
+            <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color}/>
+            
 
           </div>
 
