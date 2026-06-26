@@ -35,7 +35,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-blue-300 transition-all duration-200 hover:ring-2 hover:shadow-sm"
+        className="flex items-center gap-2 rounded-lg bg-linear-to-br from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-blue-300 transition-all duration-200 hover:ring-2 hover:shadow-sm"
       >
         <Layout size={16} />
         <span className="max-sm:hidden">Template</span>
@@ -49,7 +49,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute left-0 top-full z-50 mt-2 max-h-[80vh] w-[28rem] space-y-4 overflow-y-auto rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl">
+          <div className="absolute left-0 top-full z-50 mt-2 max-h-[80vh] w-md space-y-4 overflow-y-auto rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl">
             {templates.map((template) => (
               <div
                 key={template.id}
