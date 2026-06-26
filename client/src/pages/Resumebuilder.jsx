@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import PersonalInfoform from '../components/PersonalInfoform'
 import ResumePreview from '../components/ResumePreview'
+import TemplateSelector from '../components/TemplateSelector'
 
 const Resumebuilder = () => {
 
@@ -78,7 +79,7 @@ const Resumebuilder = () => {
         <div className='grid lg:grid-cols-12 gap-8'>
 
           {/* Left Panel-form */}
-          <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
+          <div className='relative lg:col-span-5 rounded-lg overflow-visible'>
             <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
 
               {/* progress bar */}
@@ -92,7 +93,9 @@ const Resumebuilder = () => {
               />
               {/* Section Navigation*/}
               <div className='flex justify-between items-center mb-6 border-b border-gray-300 py-1'>
-                <div></div>
+                <div className='flex justify-between items-center mb-6 border-b border-gray-300 py-1'>
+                  <TemplateSelector selectedTemplate={resumeData.template} onChange={(template)=>setResumeData(prev=>({...prev,template}))}/>
+                </div>
                 <div className='flex items-center'>
                   {activeSectionIndex!==0 && (<button onClick={()=>setActiveSectionIndex((prevIndex)=>Math.max(prevIndex-1,0))} className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ' disabled={activeSectionIndex===0}><ChevronLeft className='size-4'/></button>)
                   }
