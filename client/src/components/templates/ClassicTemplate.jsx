@@ -18,6 +18,12 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     {data.personal_info?.full_name || "Your Name"}
                 </h1>
 
+                {data.personal_info?.profession && (
+                    <p className="text-sm font-medium text-gray-600 mb-3">
+                        {data.personal_info.profession}
+                    </p>
+                )}
+
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                     {data.personal_info?.email && (
                         <div className="flex items-center gap-1">
@@ -37,10 +43,10 @@ const ClassicTemplate = ({ data, accentColor }) => {
                             <span>{data.personal_info.location}</span>
                         </div>
                     )}
-                    {data.personal_info?.CircleUser && (
+                    {data.personal_info?.linkedin && (
                         <div className="flex items-center gap-1">
                             <CircleUser className="size-4" />
-                            <span className="break-all">{data.personal_info.CircleUser}</span>
+                            <span className="break-all">{data.personal_info.linkedin}</span>
                         </div>
                     )}
                     {data.personal_info?.website && (

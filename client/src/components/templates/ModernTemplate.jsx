@@ -18,6 +18,12 @@ const ModernTemplate = ({ data, accentColor }) => {
 					{data.personal_info?.full_name || "Your Name"}
 				</h1>
 
+				{data.personal_info?.profession && (
+					<p className="text-sm font-medium mb-4">
+						{data.personal_info.profession}
+					</p>
+				)}
+
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm ">
 					{data.personal_info?.email && (
 						<div className="flex items-center gap-2">
@@ -37,16 +43,24 @@ const ModernTemplate = ({ data, accentColor }) => {
 							<span>{data.personal_info.location}</span>
 						</div>
 					)}
-					{data.personal_info?.CircleUser && (
-						<a target="_blank" href={data.personal_info?.CircleUser} className="flex items-center gap-2">
+					{data.personal_info?.linkedin && (
+						<a target="_blank" href={data.personal_info?.linkedin} className="flex items-center gap-2">
 							<CircleUser className="size-4" />
-							<span className="break-all text-xs">{data.personal_info.CircleUser.split("https://www.")[1] ? data.personal_info.CircleUser.split("https://www.")[1] : data.personal_info.CircleUser}</span>
+							<span className="break-all text-xs">
+								{data.personal_info.linkedin.split("https://www.")[1]
+									? data.personal_info.linkedin.split("https://www.")[1]
+									: data.personal_info.linkedin}
+							</span>
 						</a>
 					)}
 					{data.personal_info?.website && (
 						<a target="_blank" href={data.personal_info?.website} className="flex items-center gap-2">
 							<Globe className="size-4" />
-							<span className="break-all text-xs">{data.personal_info.website.split("https://")[1] ? data.personal_info.website.split("https://")[1] : data.personal_info.website}</span>
+							<span className="break-all text-xs">
+								{data.personal_info.website.split("https://")[1]
+									? data.personal_info.website.split("https://")[1]
+									: data.personal_info.website}
+							</span>
 						</a>
 					)}
 				</div>
