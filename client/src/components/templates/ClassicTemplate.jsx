@@ -81,6 +81,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                                         <p>{formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}</p>
                                     </div>
                                 </div>
+
                                 {exp.description && (
                                     <div className="text-gray-700 leading-relaxed whitespace-pre-line">
                                         {exp.description}
@@ -93,14 +94,14 @@ const ClassicTemplate = ({ data, accentColor }) => {
             )}
 
             {/* Projects */}
-            {data.project && data.project.length > 0 && (
+            {data.projects && data.projects.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
                         PROJECTS
                     </h2>
 
                     <ul className="space-y-3 ">
-                        {data.project.map((proj, index) => (
+                        {data.projects.map((proj, index) => (
                             <div key={index} className="flex justify-between items-start border-l-3 border-gray-300 pl-6">
                                 <div>
                                     <li className="font-semibold text-gray-800 ">{proj.name}</li>
@@ -156,6 +157,6 @@ const ClassicTemplate = ({ data, accentColor }) => {
             )}
         </div>
     );
-}
+};
 
 export default ClassicTemplate;
