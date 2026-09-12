@@ -2,7 +2,7 @@
 // POST :/api/ai/enhance-pro-sum
 
 import Resume from "../models/Resume.js";
-import resumeRouter from "../routes/resumeRoutes";
+import resumeRouter from "../routes/resumeRoutes.js";
 import ai from "../configs/ai.js";
 
 export const enhanceProfessionalSummary = async (req, res) => {
