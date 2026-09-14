@@ -1,5 +1,6 @@
 import {
   FilePenIcon,
+  LoaderCircleIcon,
   PlusIcon,
   TrashIcon,
   UploadCloud,
@@ -26,7 +27,13 @@ const Dashboard = () => {
 
 
   const loadAllResumes = async () => {
-    setAllResumes(dummyResumeData);
+    try {
+      const{data}=await api.get('/api/users/resumes',{headers:{Authorization:token}})
+      setAllResumes(data.resumes)
+    } catch (error) {
+      const{data}=await api.get('/api/users/resumes',{headers:{Authorization:token}})
+      
+    }
   };
   const createResume=async(event)=>{
     try {
@@ -36,9 +43,9 @@ const Dashboard = () => {
       setTitle('')
       setShowCreateResume(false)
       navigate(`/app/builder/${data.resume._id}`)
-      toast.error(error?.response?.data.message || error.message)
-    } catch (error) {
       
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error.message)
     }
 
   }
@@ -51,7 +58,7 @@ const Dashboard = () => {
       setTitle('')
       setResume(null)
       setShowUploadResume(false)
-      navigate('/app/builder/${data.resumeId}')
+      navigate(`/app/builder/${data.resumeId}`)
     } catch (error) {
       toast.error(error?.response?.data.message || error.message)
       
@@ -60,13 +67,32 @@ const Dashboard = () => {
 
   }
   const editTitle=async(event)=>{
-    event.preventDefault()
+    try {
+      event.preventDefault()
+      const {data}=await api.put(`/api/resumes/update`,{resumeId:editResumeId,resumeData:{title}},{headers:{Authorization:token}})
+      setAllResumes(allResumes.map(resume=>resume._id===editResumeId?{...resume,title}:resume))
+      setTitle('') 
+      setEditResumeId('')
+       toast.success(data.message)
+    } catch (error) {
+      toast.error(error?.response?.data.message || error.message)
+    }
+    
   }
   const deleteResume=async(resumeId)=>{
-    const confirm=window.confirm('Are you sure you want to delete this resume?')
+    try {
+      const confirm=window.confirm('Are you sure you want to delete this resume?')
     if(confirm){
-      setAllResumes(prev=>prev.filter(resume=>resume._id!==resumeId))
+      const {data}=await api.delete(`/api/resumes/delete/${resumeId}`,{headers:{Authorization:token}})
+      setAllResumes(allResumes.filter(resume=>resume._id !==resumeId))
+      toast.success(data.message)
+      
     }
+      
+    } catch (error) {
+      toast.error(error?.response?.data.message || error.message)
+    }
+    
   }
   useEffect(() => {
     loadAllResumes();
@@ -78,7 +104,7 @@ console.log(showUploadResume);
     <div>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <p className="text-2xl font-medium mb-6 bg-linear-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent">
-          Welcome, John Doe
+          Welcome!
         </p>
 
         <div className="flex gap-4">
@@ -196,6 +222,8 @@ console.log(showUploadResume);
                 </div>
                 
                 <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
+                  {isLoading && <LoaderCircleIcon className="animate-spin size-4 text-white"/>}
+                  {isLoading?'Uploading..':'Upload Resume'}
   Upload Resume
 </button>
 
