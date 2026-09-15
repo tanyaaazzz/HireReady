@@ -110,6 +110,7 @@ cd hireready
 
 ```bash
 cd client
+
 npm install
 ```
 
