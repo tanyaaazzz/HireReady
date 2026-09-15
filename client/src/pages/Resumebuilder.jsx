@@ -199,8 +199,8 @@ const saveResume=async ()=>{
                 onChange={(data)=>setResumeData(prev=>({...prev,education:data}))} />
               )}
               {activeSection.id==='projects' && (
-                <ProjectForm data={resumeData.projects}
-                onChange={(data)=>setResumeData(prev=>({...prev,projects:data}))} />
+                <ProjectForm data={resumeData.project}
+                onChange={(data)=>setResumeData(prev=>({...prev,project:data}))} />
               )}
               {activeSection.id==='skills' && (
                 <SkillsForm data={resumeData.skills}
